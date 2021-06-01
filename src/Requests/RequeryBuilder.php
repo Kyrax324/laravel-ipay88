@@ -62,6 +62,7 @@ class RequeryBuilder extends IPay88Core
 
 	    $ch = curl_init();
 	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Length: 0'));
 	    curl_setopt($ch, CURLOPT_POST, true);
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    $curl_result = curl_exec($ch);
