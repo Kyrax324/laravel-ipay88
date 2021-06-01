@@ -61,22 +61,16 @@ return $builder->renderView();
 ##### A. Response (set from responseURL)
 
 ```php
-use Ipay88\Request\RequestBuilder as IPay88Response;
+use Ipay88\Responses\Response as IPay88Response;
 
-try {
+$response = new IPay88Response($request);
 
-	$response = new IPay88Response($request);
+// logic to check if order has been updated before
 
-	// logic to check if order has been updated before
-
-	if($response->isSuccess()){
-		// update order to PAID
-	}else{	
-		// update order to FAIL
-	}
-
-} catch (InvalidSignatureException $e) {
-	
+if($response->isSuccess()){
+	// update order to PAID
+}else{	
+	// update order to FAIL
 }
 ```
 
@@ -87,24 +81,18 @@ try {
 >   IPay88 Server will re-try to call up to 3 times on different interval if no ‘RECEIVEOK’ acknowledgement detected
 
 ```php
-use Ipay88\Request\RequestBuilder as IPay88Response;
+use Ipay88\Responses\Response as IPay88Response;
 
-try {
+$response = new IPay88Response($request);
 
-	$response = new IPay88Response($request);
+// logic to check if order has been updated before
 
-	// logic to check if order has been updated before
-
-	if($response->isSuccess()){
-		// update order to PAID
-	 	return "RECEIVEOK";
-	}else{
-		// update order to FAIL
-	}
-} catch (InvalidSignatureException $e) {
-	
+if($response->isSuccess()){
+	// update order to PAID
+ 	return "RECEIVEOK";
+}else{
+	// update order to FAIL
 }
-
 ```
 
 ### 3. Requery to check payment status (If needed)
@@ -121,6 +109,7 @@ $builder->setAmount(1);
 if($builder->isSuccess()){
 	// update order to PAID
 }else{
+	// update order to FAIL
 }
 ```
 

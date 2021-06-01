@@ -125,6 +125,9 @@ class RequestBuilder extends IPay88Core
 		foreach ($fields as $key => $val) {
 			echo "<div><input type='{$fieldType}' name='{$key}' value='{$val}'></div>";
 		}
+		if(!$autoSubmit){
+			echo "<div><input type=\"submit\" value=\"Submit\" name=\"Submit\"></input></div>";
+		}
 
 		echo "</form>";
 		if($autoSubmit){
