@@ -81,7 +81,7 @@ class Response extends IPay88Core
 
 	public function verifySignature() : bool
 	{
-		$verified = ($this->signature == self::generateResponseSignature());
+		$verified = ($this->resSignature == self::generateResponseSignature());
 		
 		if(!$verified){
 			throw new InvalidSignatureException;		
