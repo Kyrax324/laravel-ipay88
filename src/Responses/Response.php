@@ -3,7 +3,7 @@
 namespace IPay88\Responses;
 
 use IPay88\IPay88Core;
-use IPay88\InvalidSignatureException;
+use IPay88\Exceptions\InvalidSignatureException;
 
 class Response extends IPay88Core
 {
