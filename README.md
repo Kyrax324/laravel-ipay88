@@ -69,7 +69,7 @@ $response = new IPay88Response($request);
 
 if($response->isSuccess()){
 	// update order to PAID
-}else{	
+}else{
 	// update order to FAIL
 }
 ```

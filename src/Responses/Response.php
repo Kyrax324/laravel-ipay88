@@ -4,6 +4,7 @@ namespace IPay88\Responses;
 
 use IPay88\IPay88Core;
 use IPay88\Exceptions\InvalidSignatureException;
+use Illuminate\Support\Arr;
 
 class Response extends IPay88Core
 {
@@ -15,47 +16,34 @@ class Response extends IPay88Core
 
 	protected $resAmount;
 
-	protected $resCurrency;
-
-	protected $resRemark;
-
-	protected $resTransId;
-
-	protected $resAuthCode;
-
 	protected $resStatus;
-
-	protected $resErrDesc;
 
 	protected $resSignature;
 
-	protected $resCCName;
+	protected $mandatoryFields = [
+		'MerchantCode',
+		'PaymentId',
+		'RefNo',
+		'Amount',
+		'Currency',
+		'Status',
+		'Signature'
+	];
 
-	protected $resCCNo;
+	protected $additionalResults;
 
-	protected $resS_bankname;
-
-	protected $resS_country;
-
-	public function __construct($request, $validation = true)
+	public function __construct(Array $request, $validation = true)
 	{
 		parent::__construct();
 
-		$this->resMerchantCode = $request->MerchantCode;
-		$this->resPaymentId = $request->PaymentId;
-		$this->resRefNo = $request->RefNo;
-		$this->resAmount = $request->Amount;
-		$this->resCurrency = $request->Currency;
-		$this->resRemark = $request->Remark;
-		$this->resTransId = $request->TransId;
-		$this->resAuthCode = $request->AuthCode;
-		$this->resStatus = $request->Status;
-		$this->resErrDesc = $request->ErrDesc;
-		$this->resSignature = $request->Signature;
-		$this->resCCName = $request->CCName;
-		$this->resCCNo = $request->CCNo;
-		$this->resS_bankname = $request->S_bankname;
-		$this->resS_country = $request->S_country;
+		$this->resMerchantCode = $request['MerchantCode'];
+		$this->resPaymentId = $request['PaymentId'];
+		$this->resRefNo = $request['RefNo'];
+		$this->resAmount = $request['Amount'];
+		$this->resCurrency = $request['Currency'];
+		$this->resStatus = $request['Status'];
+		$this->resSignature = $request['Signature'];
+		$this->additionalResults = Arr::except($array, $this->mandatoryFields);
 
 		if($validation){
 			self::verifySignature();
@@ -93,5 +81,10 @@ class Response extends IPay88Core
 	public function isSuccess() : bool
 	{
 		return $this->resStatus == 1;
+	}
+
+	public function getAdditionalResults() : Array
+	{
+		return $this->additionalResults;
 	}
 }
