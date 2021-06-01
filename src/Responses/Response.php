@@ -43,7 +43,7 @@ class Response extends IPay88Core
 		$this->resCurrency = $request['Currency'];
 		$this->resStatus = $request['Status'];
 		$this->resSignature = $request['Signature'];
-		$this->additionalResults = Arr::except($array, $this->mandatoryFields);
+		$this->additionalResults = Arr::except($request, $this->mandatoryFields);
 
 		if($validation){
 			self::verifySignature();
