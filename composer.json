@@ -1,0 +1,21 @@
+{
+    "name": "kyrax324/laravel-ipay88",
+    "description": "IPay88 Payment Gateway Integration for Laravel Application",
+    "keywords": ["laravel", "ipay88"],
+    "type": "library",
+    "require": {
+        "php": ">=7.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kyrax324",
+            "email": "kyrax324@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IPay88\\": "src/"
+        }
+    }
+}
