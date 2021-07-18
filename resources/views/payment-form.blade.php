@@ -2,49 +2,49 @@
 
 <form id='autosubmit' action='{{ $requestUrl }}' method='POST'>
 	<div
-		><input type='text' name='MerchantCode' value="{{ $payload['MerchantCode'] }}">
+		><input type='hidden' name='MerchantCode' value="{{ $payload['MerchantCode'] }}">
 	</div>
 	<div
-		><input type='text' name='PaymentId' value="{{ $payload['PaymentId'] }}">
+		><input type='hidden' name='PaymentId' value="{{ $payload['PaymentId'] }}">
 	</div>
 	<div
-		><input type='text' name='RefNo' value="{{ $payload['RefNo'] }}">
+		><input type='hidden' name='RefNo' value="{{ $payload['RefNo'] }}">
 	</div>
 	<div
-		><input type='text' name='Amount' value="{{ $payload['Amount'] }}">
+		><input type='hidden' name='Amount' value="{{ $payload['Amount'] }}">
 	</div>
 	<div
-		><input type='text' name='Currency' value="{{ $payload['Currency'] }}">
+		><input type='hidden' name='Currency' value="{{ $payload['Currency'] }}">
 	</div>
 	<div
-		><input type='text' name='ProdDesc' value="{{ $payload['ProdDesc'] }}">
+		><input type='hidden' name='ProdDesc' value="{{ $payload['ProdDesc'] }}">
 	</div>
 	<div
-		><input type='text' name='UserName' value="{{ $payload['UserName'] }}">
+		><input type='hidden' name='UserName' value="{{ $payload['UserName'] }}">
 	</div>
 	<div
-		><input type='text' name='UserEmail' value="{{ $payload['UserEmail'] }}">
+		><input type='hidden' name='UserEmail' value="{{ $payload['UserEmail'] }}">
 	</div>
 	<div
-		><input type='text' name='UserContact' value="{{ $payload['UserContact'] }}">
+		><input type='hidden' name='UserContact' value="{{ $payload['UserContact'] }}">
 	</div>
 	<div
-		><input type='text' name='Remark' value="{{ $payload['Remark'] }}">
+		><input type='hidden' name='Remark' value="{{ $payload['Remark'] }}">
 	</div>
 	<div
-		><input type='text' name='Lang' value="{{ $payload['Lang'] }}">
+		><input type='hidden' name='Lang' value="{{ $payload['Lang'] }}">
 	</div>
 	<div
-		><input type='text' name='SignatureType' value="{{ $payload['SignatureType'] }}">
+		><input type='hidden' name='SignatureType' value="{{ $payload['SignatureType'] }}">
 	</div>
 	<div
-		><input type='text' name='Signature' value="{{ $payload['Signature'] }}">
+		><input type='hidden' name='Signature' value="{{ $payload['Signature'] }}">
 	</div>
 	<div
-		><input type='text' name='ResponseURL' value="{{ $payload['ResponseURL'] }}">
+		><input type='hidden' name='ResponseURL' value="{{ $payload['ResponseURL'] }}">
 	</div>
 	<div
-		><input type='text' name='BackendURL' value="{{ $payload['BackendURL'] }}">
+		><input type='hidden' name='BackendURL' value="{{ $payload['BackendURL'] }}">
 	</div>
 </form>
 
