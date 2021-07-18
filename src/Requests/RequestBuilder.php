@@ -5,29 +5,41 @@ namespace IPay88\Requests;
 use IPay88\IPay88Core;
 
 class RequestBuilder extends IPay88Core
-{
+{	
+	// Refer to Appendix I.pdf file for MYR gateway. Refer to Appendix II.pdf file for Multi-curency gateway.
 	protected $paymentID = '';
 
+	// Unique merchant transaction number / Order
 	protected $refNo;
 
+	// Payment amount with two decimals and thousand symbols. Example: 1,278.99
 	protected $amount;
 
+	// Refer to Appendix I.pdf file for MYR gateway. Refer to Appendix II.pdf file for Multi-curency gateway.
 	protected $currency;
 
+	// Product description
 	protected $prodDesc;
 
+	// Customer name
 	protected $userName;
 
+	// Customer email for receiving receipt
 	protected $userEmail;
 
+	// Customer contact number
 	protected $userContact;
 
+	// Merchant remarks
 	protected $remark = '';
 
+	// Signature type = "SHA256" SHA-256 signature (refer to 3.1)
 	protected $signature;
 
+	//  Payment response page
 	protected $responseURL;
 
+	// Backend response page URL (refer to 2.7)
 	protected $backendURL;
 
 	public function setPaymentID($paymentID){
@@ -38,8 +50,9 @@ class RequestBuilder extends IPay88Core
 		$this->refNo = $refNo;
 	}
 
+		// to 2.d.p & with thousand separator
 	public function setAmount($amount){
-		$this->amount = number_format($amount, 2, '.', '');
+		$this->amount = number_format($amount, 2, '.', ',');
 	}
 
 	public function setCurrency($currency){
@@ -93,7 +106,8 @@ class RequestBuilder extends IPay88Core
 		return $this->signature;
 	}
 
-	public function toArray() : array
+	// generate signature & return array of required fields
+	public function toRequestArray() : array
 	{
 		$this->generateRequestSignature();
 
@@ -116,31 +130,13 @@ class RequestBuilder extends IPay88Core
 		];
 	}
 
-
-	public function renderView($autoSubmit = true,  $fieldType = "hidden")
+	// load the payment form
+	public function loadPaymentFormView($data = null)
 	{
-		echo "<form id='autosubmit' action='".$this->requestUrl."' method='post'>";
-
-		$fields = $this->toArray();
-		foreach ($fields as $key => $val) {
-			echo "<div><input type='{$fieldType}' name='{$key}' value='{$val}'></div>";
-		}
-		if(!$autoSubmit){
-			echo "<div><input type=\"submit\" value=\"Submit\" name=\"Submit\"></input></div>";
-		}
-
-		echo "</form>";
-		if($autoSubmit){
-			echo "
-			<script type='text/javascript'>
-				function submitForm() {
-					document.getElementById('autosubmit').submit();
-				}
-				window.onload = submitForm;
-			</script>
-			";
-		}
-
-		return null;
+		return view("iPay88::payment-form", [
+			"requestUrl" => $this->requestUrl,
+			"payload" => $this->toRequestArray(),
+			"data" => $data
+		]);
 	}
 }

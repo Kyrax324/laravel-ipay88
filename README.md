@@ -10,14 +10,18 @@ composer require kyrax324/laravel-ipay88
 
 ## Configuration
 
-setup `merchantKey` and `merchantCode` in config file.
+Publish the config file & setup the `merchantKey` and `merchantCode`
 
-```php 
-// app/config/services.php
- 'iPay88' => [
-	'merchantKey' => env('IPAY88_MERCHANT_KEY', "SAMPLE_KEY"),
-	'merchantCode' => env('IPAY88_MERCHANT_CODE', "SAMPLE_CODE"),
- ]
+```bash
+php artisan vendor:publish --provider="IPay88\IPay88ServiceProvider" --tag=config
+```
+
+## Views (Optional)
+
+If you wish to modify the payment form, you may publish the views
+
+```bash
+php artisan vendor:publish --provider="IPay88\IPay88ServiceProvider" --tag=views
 ```
 
 ## Usage
@@ -50,9 +54,7 @@ $builder->setUserContact('Sample User Contact');
 $builder->setResponseURL("http://sample.com/response_url");
 $builder->setBackendURL("http://sample.com/backend_url");
 
-return $builder->renderView();
-
-// return view('payments.view', $builder->toArray()); // or return to your own view
+return $builder->loadPaymentFormView();
 ```
 ### 2. Handle Response from IPay88 Server
 
@@ -117,3 +119,6 @@ if($builder->isSuccess()){
 
 For more information, kindly refer to [IPay88 Integration FAQ](https://docs.google.com/document/d/13hYO2RstXHgJCsWBq36N1x3io3tyOZY_6S_kuaIjdjw/edit)
 
+## Issues
+
+If you found any issue, please [open a new issue](https://github.com/Kyrax324/laravel-ipay88/issues)

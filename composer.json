@@ -17,5 +17,12 @@
         "psr-4": {
             "IPay88\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IPay88\\IPay88ServiceProvider"
+            ]
+        }
     }
 }

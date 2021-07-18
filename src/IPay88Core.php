@@ -3,7 +3,7 @@
 namespace IPay88;
 
 class IPay88Core
-{
+{	
 	protected $merchantKey;
 
 	protected $merchantCode;
@@ -42,8 +42,8 @@ class IPay88Core
 
 	public function __construct()
 	{
-		$this->merchantKey = config('services.iPay88.merchantKey');
-		$this->merchantCode = config('services.iPay88.merchantCode');
+		$this->merchantKey = config('iPay88.merchantKey');
+		$this->merchantCode = config('iPay88.merchantCode');
 	}
 
 	public function generateSignature(String $source) : String
