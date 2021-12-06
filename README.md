@@ -36,12 +36,12 @@ According to IPay88 documentation, each payment order will undergoes the followi
 
 ### 1. Prepare & Submit Request to IPay88 Server
 
-#### `Ipay88\Request\RequestBuilder`
+#### `IPay88\Request\RequestBuilder`
 
 - create payment request and return view
 
 ```php
-use Ipay88\Request\RequestBuilder as IPay88RequestBuilder;
+use IPay88\Request\RequestBuilder as IPay88RequestBuilder;
 
 $builder = new IPay88RequestBuilder();
 $builder->setRefNo(1);
@@ -58,12 +58,12 @@ return $builder->loadPaymentFormView();
 ```
 ### 2. Handle Response from IPay88 Server
 
-#### `Ipay88\Request\Response`
+#### `IPay88\Request\Response`
 
 ##### A. Response (set from responseURL)
 
 ```php
-use Ipay88\Responses\Response as IPay88Response;
+use IPay88\Responses\Response as IPay88Response;
 
 $response = new IPay88Response($request);
 
@@ -99,10 +99,10 @@ if($response->isSuccess()){
 
 ### 3. Requery to check payment status (If needed)
 
-#### `Ipay88\Request\RequeryBuilder`
+#### `IPay88\Request\RequeryBuilder`
 
 ```php
-use Ipay88\Request\RequeryBuilder as IPay88RequeryBuilder;
+use IPay88\Request\RequeryBuilder as IPay88RequeryBuilder;
 
 $builder = new IPay88RequeryBuilder();
 $builder->setRefNo(1);
